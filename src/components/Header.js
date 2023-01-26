@@ -18,8 +18,6 @@ const HeaderBox = styled.div`
   left: 0;
 `;
 
-const HeaderLeft = styled.div``;
-
 const LogoImg = styled.img`
   width: 92px;
   height: 26px;
@@ -74,7 +72,7 @@ const DropDownImg = styled.img`
 `;
 
 const Header = () => {
-  const list = [
+  const menuItemlist = [
     "홈",
     "시리즈",
     "영화",
@@ -86,7 +84,7 @@ const Header = () => {
     <HeaderBox>
       <LogoImg src={logo} alt="NETFLIX" />
       <MenuList>
-        {list.map((item) => (
+        {menuItemlist.map((item) => (
           <MenuItem>{item}</MenuItem>
         ))}
       </MenuList>
