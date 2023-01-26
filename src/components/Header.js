@@ -24,11 +24,11 @@ const LogoImg = styled.img`
 `;
 
 const MenuList = styled.ul`
-  font-size: 0.87vw;
+  font-size: 0.8vw;
   color: white;
   list-style-type: none;
   display: flex;
-  padding-left: 20px;
+  padding-left: 30px;
 `;
 
 const MenuItem = styled.li`
@@ -44,13 +44,13 @@ const SideNav = styled.div`
 const ImgIcon = styled.img`
   width: 24px;
   height: 24px;
-  margin-right: 15px;
+  margin-right: 20px;
 `;
 
 const NavText = styled.p`
   color: white;
-  margin-right: 15px;
-  font-size: 0.87vw;
+  margin-right: 20px;
+  font-size: 0.8vw;
 `;
 
 const DropDown = styled.div`
