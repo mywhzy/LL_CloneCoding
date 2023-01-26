@@ -12,6 +12,10 @@ const HeaderBox = styled.div`
   padding: 0 3.5% 0 3.5%;
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 `;
 
 const HeaderLeft = styled.div``;
