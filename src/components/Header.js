@@ -6,8 +6,39 @@ import notification from "../images/notification.png";
 import profile from "../images/profile.png";
 import dropdown from "../images/down-arrow.png";
 
+const Header = () => {
+  const menuItemlist = [
+    "홈",
+    "시리즈",
+    "영화",
+    "NEW! 요즘 대세 콘텐츠",
+    "내가 찜한 콘텐츠",
+    "언어별로 찾아보기",
+  ];
+  return (
+    <HeaderBox>
+      <LogoImg src={logo} alt="NETFLIX" />
+      <MenuList>
+        {menuItemlist.map((item) => (
+          <MenuItem>{item}</MenuItem>
+        ))}
+      </MenuList>
+      <SideNav>
+        <ImgIcon src={search} />
+        <NavText>키즈</NavText>
+        <ImgIcon src={notification} />
+        <DropDown>
+          <ProfileImg src={profile} />
+          <DropDownImg src={dropdown} />
+        </DropDown>
+      </SideNav>
+    </HeaderBox>
+  );
+};
+
+export default Header;
+
 const HeaderBox = styled.div`
-  background-color: black;
   height: 68px;
   padding: 0 3.5% 0 3.5%;
   display: flex;
@@ -70,35 +101,3 @@ const DropDownImg = styled.img`
   margin-left: 10px;
   vertical-align: middle;
 `;
-
-const Header = () => {
-  const menuItemlist = [
-    "홈",
-    "시리즈",
-    "영화",
-    "NEW! 요즘 대세 콘텐츠",
-    "내가 찜한 콘텐츠",
-    "언어별로 찾아보기",
-  ];
-  return (
-    <HeaderBox>
-      <LogoImg src={logo} alt="NETFLIX" />
-      <MenuList>
-        {menuItemlist.map((item) => (
-          <MenuItem>{item}</MenuItem>
-        ))}
-      </MenuList>
-      <SideNav>
-        <ImgIcon src={search} />
-        <NavText>키즈</NavText>
-        <ImgIcon src={notification} />
-        <DropDown>
-          <ProfileImg src={profile} />
-          <DropDownImg src={dropdown} />
-        </DropDown>
-      </SideNav>
-    </HeaderBox>
-  );
-};
-
-export default Header;
