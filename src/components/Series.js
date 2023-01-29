@@ -1,9 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import test from "../images/profile.png";
+import tempdata from "../tempdata/data.json";
+import Modal from "./Modal";
+
+const Series = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [clickedImg, setClickedImg] = useState("");
+
+  const handleImgClick = (img) => {
+    setShowModal(true);
+    setClickedImg(img);
+  };
+
+  const handleClosebtnClick = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <SeriesBox>
+      <SeriseHeader>해외 시리즈</SeriseHeader>
+      <SeriseList>
+        {tempdata.posterImgList.map((item) => (
+          <SerisePoster
+            src={item.image}
+            onClick={() => handleImgClick(item.image)}
+          />
+        ))}
+        {showModal && (
+          <Modal img={clickedImg} closeModal={handleClosebtnClick} />
+        )}
+      </SeriseList>
+      <SeriseHeader>시리즈</SeriseHeader>
+      <SeriseList>
+        {tempdata.posterImgList.map((item) => (
+          <SerisePoster
+            src={item.image}
+            onClick={() => handleImgClick(item.image)}
+          />
+        ))}
+        {showModal && (
+          <Modal img={clickedImg} closeModal={handleClosebtnClick} />
+        )}
+      </SeriseList>
+    </SeriesBox>
+  );
+};
+
+export default Series;
 
 const SeriesBox = styled.div`
-  background-color: black;
   padding: 0 3.5% 0 3.5%;
 `;
 
@@ -39,32 +84,3 @@ const SerisePoster = styled.img`
   flex-basis: 250px;
   flex-shrink: 0;
 `;
-
-const Series = () => {
-  return (
-    <SeriesBox>
-      <SeriseHeader>해외 시리즈</SeriseHeader>
-      <SeriseList>
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-      </SeriseList>
-      <SeriseHeader>시리즈</SeriseHeader>
-      <SeriseList>
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-        <SerisePoster src={test} />
-      </SeriseList>
-    </SeriesBox>
-  );
-};
-
-export default Series;

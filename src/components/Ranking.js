@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import test from "../images/profile.png";
+import tempdata from "../tempdata/data.json";
+import Modal from "./Modal";
+
+const Ranking = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [clickedImg, setClickedImg] = useState("");
+
+  const handleImgClick = (img) => {
+    setShowModal(true);
+    setClickedImg(img);
+  };
+
+  const handleClosebtnClick = () => {
+    setShowModal(false);
+  };
+  return (
+    <RakingBox>
+      <RankingHeader>오늘 대한민국의 TOP 10 영화</RankingHeader>
+      <RankingList>
+        {tempdata.posterImgList.map((item) => (
+          <RankingItem>
+            <RankingNum>{item.id}</RankingNum>
+            <RankPostImg
+              src={item.image}
+              onClick={() => handleImgClick(item.image)}
+            />
+          </RankingItem>
+        ))}
+        {showModal && (
+          <Modal img={clickedImg} closeModal={handleClosebtnClick} />
+        )}
+      </RankingList>
+    </RakingBox>
+  );
+};
+
+export default Ranking;
 
 const RakingBox = styled.div`
-  background-color: black;
   padding: 78px 3.5% 0 3.5%;
 `;
 
@@ -48,55 +83,3 @@ const RankPostImg = styled.img`
   width: 130px;
   height: 170px;
 `;
-
-const Ranking = () => {
-  return (
-    <RakingBox>
-      <RankingHeader>오늘 대한민국의 TOP 10 영화</RankingHeader>
-      <RankingList>
-        <RankingItem>
-          <RankingNum>1</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>2</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>3</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>4</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>5</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>6</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>7</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>8</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>9</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-        <RankingItem>
-          <RankingNum>10</RankingNum>
-          <RankPostImg src={test} />
-        </RankingItem>
-      </RankingList>
-    </RakingBox>
-  );
-};
-
-export default Ranking;
