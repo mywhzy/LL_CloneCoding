@@ -4,7 +4,7 @@ import ageLimitIcon from "../images/age-limit.png";
 import adIcon from "../images/audio-description.png";
 import subtitlesIcon from "../images/subtitles.png";
 
-const Modal = ({ img, closeModal }) => {
+const Modal = ({ img, overView, closeModal }) => {
   return (
     <ModalBox>
       <ModalCloseBtn onClick={closeModal}>X</ModalCloseBtn>
@@ -21,10 +21,7 @@ const Modal = ({ img, closeModal }) => {
             <VodLeftSideTopInfoIcon src={subtitlesIcon} />
           </VodLeftSideTopInfo>
           <VodSummary>
-            인간과 인간이 관계를 맺고 그걸 이어가는 데엔 어떠한 크고 작은 이유가
-            존재한다. 그 과정에서 각자의 존재 이유는 서로가 되어주고, 수많은
-            이유가 쌓인 순간부터는 더 이상 이유가 존재하지 않아도 관계는
-            유지된다. 굳이 이유가 필요 없는, 인연이라는 관계의 증명이다.
+            {overView ? overView : "줄거리 준비 중입니다 . . ."}
           </VodSummary>
         </VodLeftSideInfoBox>
         <VodRightSideInfoBox>
@@ -62,7 +59,7 @@ const ModalBox = styled.div`
   margin: auto;
   background: #242424;
   width: 901px;
-  height: 700px;
+  height: 800px;
   border-radius: 10px;
   color: white;
   box-shadow: 0px 0px 100px 5000px #00000087;

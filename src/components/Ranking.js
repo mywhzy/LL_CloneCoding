@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import tempdata from "../tempdata/data.json";
 import Modal from "./Modal";
+import axios from "axios";
+import { RANKING_LIST_URL, IMG_BASE_URL } from "./UrlLists";
 
 const Ranking = () => {
   const [showModal, setShowModal] = useState(false);
   const [clickedImg, setClickedImg] = useState("");
+  const [movieList, setMovieList] = useState([]);
+  const [overView, setOverView] = useState("");
 
-  const handleImgClick = (img) => {
+  const getMovieRanking = () => {
+    axios
+      .get(RANKING_LIST_URL)
+      .then((Response) => {
+        console.log(Response.data.results);
+        setMovieList(Response.data.results);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  };
+
+  useEffect(() => {
+    getMovieRanking();
+  }, []);
+
+  const handleImgClick = (img, overView) => {
     setShowModal(true);
     setClickedImg(img);
+    setOverView(overView);
   };
 
   const handleClosebtnClick = () => {
@@ -19,17 +39,23 @@ const Ranking = () => {
     <RakingBox>
       <RankingHeader>오늘 대한민국의 TOP 10 영화</RankingHeader>
       <RankingList>
-        {tempdata.posterImgList.map((item) => (
+        {movieList.map((item, index) => (
           <RankingItem>
-            <RankingNum>{item.id}</RankingNum>
+            <RankingNum>{index + 1}</RankingNum>
             <RankPostImg
-              src={item.image}
-              onClick={() => handleImgClick(item.image)}
+              src={IMG_BASE_URL + item.poster_path}
+              onClick={() =>
+                handleImgClick(IMG_BASE_URL + item.poster_path, item.overview)
+              }
             />
           </RankingItem>
         ))}
         {showModal && (
-          <Modal img={clickedImg} closeModal={handleClosebtnClick} />
+          <Modal
+            img={clickedImg}
+            overView={overView}
+            closeModal={handleClosebtnClick}
+          />
         )}
       </RankingList>
     </RakingBox>
